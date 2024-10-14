@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>No toques el boton</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 20px;
+        background-image: url("F.jpg"); /* Imagen de fondo por defecto */
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+      }
+
+      .container {
+        position: relative;
+        display: inline-block;
+        background-color: rgba(
+          252,
+          252,
+          252,
+          0.8
+        ); /* Fondo blanco semitransparente */
+        padding: 20px;
+        border-radius: 10px;
+      }
+
+      #image {
+        width: 480px;
+        height: 360px;
+        border: 2px solid #eb9cd4;
+      }
+
+      .buttons {
+        margin-top: 20px;
+      }
+
+      .buttons button {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin: 0 10px;
+        cursor: pointer;
+      }
+
+      h1 {
+        color: rgb(234, 163, 208);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>No toques el boton</h1>
+    <div class="container">
+      <img id="image" src="imagenes/imagen1.jpg" alt="Imagen" />
+    </div>
+
+    <div class="buttons">
+      <button onclick="previousImage()">Anterior</button>
+      <button onclick="nextImage()">Siguiente</button>
+    </div>
+
+    <script>
+      // Arreglo de rutas de las imágenes locales
+      const images = ["Say.jpg", "Sayo.jpg", "Fondo.jpg", "Sayor.jpg"];
+
+      // Imagen de fondo por defecto y para la última imagen
+      const defaultBackground = "url('div.jpg')";
+      const specialBackground = "url('Fond.jpg')"; // Imagen de fondo para la última imagen
+
+      let currentIndex = 0;
+
+      // Función para mostrar la siguiente imagen
+      function nextImage() {
+        currentIndex++;
+        if (currentIndex >= images.length) {
+          currentIndex = 0; // Vuelve a la primera imagen si se llega al final
+        }
+        document.getElementById("image").src = images[currentIndex];
+        changeBackground();
+      }
+
+      // Función para mostrar la imagen anterior
+      function previousImage() {
+        currentIndex--;
+        if (currentIndex < 0) {
+          currentIndex = images.length - 1; // Vuelve a la última imagen si se llega al inicio
+        }
+        document.getElementById("image").src = images[currentIndex];
+        changeBackground();
+      }
+
+      // Función para cambiar el fondo según la imagen actual
+      function changeBackground() {
+        if (currentIndex === images.length - 1) {
+          document.body.style.backgroundImage = specialBackground; // Cambia al fondo especial en la última imagen
+        } else {
+          document.body.style.backgroundImage = defaultBackground; // Vuelve al fondo normal
+        }
+      }
+    </script>
+  </body>
+</html>
